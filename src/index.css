@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    color-scheme: light;
+  }
+  
+  body {
+    background-color: #FFFFFF;
+    color: #1F2937;
+    overflow-x: hidden;
+  }
+}
+
+/* Ken Burns Slow Cinematic Zoom Animation (20-30s) */
+@keyframes kenburns {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-kenburns {
+  animation: kenburns 25s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+/* Orange Gradient Button */
+.btn-orange-gradient {
+  background: linear-gradient(135deg, #FF7900 0%, #FF3D18 100%);
+  color: #FFFFFF;
+  font-weight: 600;
+  transition: all 0.25s ease-in-out;
+  box-shadow: 0 4px 15px rgba(255, 121, 0, 0.3);
+}
+
+.btn-orange-gradient:hover {
+  background: linear-gradient(135deg, #FF891C 0%, #FF4D29 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 121, 0, 0.45);
+}
+
+.btn-orange-gradient:active {
+  transform: translateY(0);
+}
+
+/* Glass & Card Effects */
+.card-clean {
+  background: #FFFFFF;
+  border: 1px solid #F3F4F6;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+  transition: all 0.25s ease-in-out;
+}
+
+.card-clean:hover {
+  border-color: #FED7AA;
+  box-shadow: 0 10px 25px -5px rgba(255, 121, 0, 0.1);
+}
+
+/* Text Gradients */
+.text-gradient-orange {
+  background: linear-gradient(135deg, #FF7900 0%, #FF3D18 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F3F4F6;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D1D5DB;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #FF7900;
+}
