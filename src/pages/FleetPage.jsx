@@ -1,13 +1,147 @@
 import React, { useState } from 'react';
 import { 
   Bus, Users, Wind, CheckCircle2, 
-  ChevronRight, ArrowRight, ShieldCheck, Sparkles, Filter 
+  ChevronRight, ArrowRight, ShieldCheck, Sparkles, Filter, Camera 
 } from 'lucide-react';
 import WhatsAppIcon from '../components/icons/WhatsAppIcon';
 import { fleetCategories } from '../data/actualFleetData';
 import { getWhatsAppUrl } from '../utils/whatsapp';
 
-export default function FleetPage() {
+function VehicleCard({ vehicle, onOpenLightbox, createWhatsAppLink }) {
+  const [activeIdx, setActiveIdx] = useState(0);
+  const photos = vehicle.gallery && vehicle.gallery.length > 0 ? vehicle.gallery : [vehicle.image];
+
+  const handleOpenPhoto = () => {
+    if (onOpenLightbox) {
+      const lightboxItems = photos.map((img, i) => ({
+        image: img,
+        title: `${vehicle.name} (${vehicle.regNo})`,
+        subtitle: `Photo ${i + 1} of ${photos.length} • ${vehicle.capacity} • ${vehicle.ac}`
+      }));
+      onOpenLightbox(lightboxItems[activeIdx], activeIdx, lightboxItems);
+    }
+  };
+
+  return (
+    <div className="bg-white rounded-2xl border border-gray-200/90 overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+      <div>
+        {/* Standardized 1200x800 Bus Photograph Container */}
+        <div 
+          className="relative h-56 sm:h-60 w-full overflow-hidden bg-gray-950 group cursor-pointer select-none"
+          onClick={handleOpenPhoto}
+          title="Click to view full photo"
+        >
+          <img
+            src={photos[activeIdx]}
+            alt={`${vehicle.name} - ${vehicle.regNo}`}
+            className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
+            loading="lazy"
+          />
+          
+          {/* Registration Number Badge */}
+          {vehicle.regNo && (
+            <div className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-white/95 backdrop-blur-sm border border-gray-200 text-[11px] font-bold tracking-wider text-gray-900 shadow-sm">
+              {vehicle.regNo}
+            </div>
+          )}
+
+          {/* Multiple Photos Indicator Badge */}
+          {photos.length > 1 && (
+            <div className="absolute top-3 right-3 px-2 py-1 rounded-md bg-black/75 backdrop-blur-sm text-[10px] font-bold text-white flex items-center gap-1 shadow hover:bg-black/90 transition-colors">
+              <Camera className="w-3 h-3 text-[#FF7900]" />
+              <span>{photos.length} Photos</span>
+            </div>
+          )}
+
+          {/* AC Badge */}
+          <div className="absolute bottom-3 left-3 px-2.5 py-1 rounded-md bg-black/75 backdrop-blur-sm text-[10px] font-bold text-white flex items-center gap-1">
+            <Wind className="w-3 h-3 text-[#91BBD9]" />
+            <span>{vehicle.ac}</span>
+          </div>
+
+          {/* Interactive Thumbnail Dots Switcher */}
+          {photos.length > 1 && (
+            <div 
+              className="absolute bottom-3 right-3 flex items-center gap-1.5 px-2 py-1 rounded-full bg-black/60 backdrop-blur-sm z-10"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {photos.map((_, dotIdx) => (
+                <button
+                  key={dotIdx}
+                  type="button"
+                  onClick={() => setActiveIdx(dotIdx)}
+                  className={`h-2 rounded-full transition-all ${
+                    activeIdx === dotIdx ? 'bg-[#FF7900] w-4' : 'bg-white/70 hover:bg-white w-2'
+                  }`}
+                  aria-label={`View photo ${dotIdx + 1}`}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Card Content with consistent min-height */}
+        <div className="p-5">
+          <div className="flex items-start justify-between gap-2 mb-1">
+            <h3 className="text-base font-bold text-gray-900 leading-snug">
+              {vehicle.name}
+            </h3>
+          </div>
+
+          {/* Specs Badges */}
+          <div className="flex flex-wrap items-center gap-2 mb-3 text-[11px]">
+            <span className="px-2 py-0.5 rounded bg-gray-100 text-gray-700 font-semibold flex items-center gap-1">
+              <Users className="w-3 h-3 text-[#FF7900]" />
+              {vehicle.capacity}
+            </span>
+            <span className="px-2 py-0.5 rounded bg-orange-50 text-orange-800 font-semibold">
+              {vehicle.seatingType}
+            </span>
+            <span className={`px-2 py-0.5 rounded font-semibold ${
+              vehicle.ac === 'AC' ? 'bg-blue-50 text-blue-700' : 'bg-gray-100 text-gray-600'
+            }`}>
+              {vehicle.ac}
+            </span>
+          </div>
+
+          <p className="text-xs text-gray-600 leading-relaxed min-h-[38px]">
+            {vehicle.description}
+          </p>
+
+          {photos.length > 1 && (
+            <button
+              type="button"
+              onClick={handleOpenPhoto}
+              className="mt-2 text-[11px] font-semibold text-[#FF7900] hover:text-[#FF3D18] flex items-center gap-1 transition-colors"
+            >
+              <Camera className="w-3 h-3" />
+              <span>View all {photos.length} photos</span>
+            </button>
+          )}
+        </div>
+      </div>
+
+      {/* Card Footer: Booking note & WhatsApp Enquiry */}
+      <div className="p-5 pt-0 space-y-2.5 border-t border-gray-100 mt-2">
+        <div className="pt-2 text-center text-xs font-semibold text-gray-700 bg-gray-50 py-1.5 px-2 rounded-lg border border-gray-100">
+          Contact Us for Booking & Availability
+        </div>
+
+        <a
+          href={createWhatsAppLink(vehicle.name, vehicle.regNo)}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-full btn-orange-gradient py-2.5 px-4 rounded-xl text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 shadow-sm hover:brightness-105 transition-all"
+        >
+          <WhatsAppIcon className="w-3.5 h-3.5" fill="white" />
+          <span>Enquire on WhatsApp</span>
+        </a>
+      </div>
+    </div>
+  );
+}
+
+export default function FleetPage({ onOpenLightbox }) {
   const [selectedCategory, setSelectedCategory] = useState('all');
 
   // Helper to construct contextual WhatsApp message
@@ -25,10 +159,12 @@ export default function FleetPage() {
     return getWhatsAppUrl(text);
   };
 
-  // Get filtered vehicles or all vehicles
+  // Get filtered categories or all
   const displayedCategories = selectedCategory === 'all'
     ? fleetCategories
     : fleetCategories.filter(c => c.id === selectedCategory);
+
+  const totalVehiclesCount = fleetCategories.reduce((acc, cat) => acc + cat.vehicles.length, 0);
 
   return (
     <div className="pt-20 sm:pt-24 bg-white text-gray-900 font-sans">
@@ -38,7 +174,7 @@ export default function FleetPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/20 text-[#FF7900] text-xs font-bold uppercase tracking-wider mb-3 border border-orange-500/30">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>Official Fleet Catalogue</span>
+            <span>Official Fleet Catalogue ({totalVehiclesCount} Verified Vehicles)</span>
           </div>
 
           <h1 className="text-3xl sm:text-5xl font-display font-extrabold tracking-tight mb-4">
@@ -46,7 +182,7 @@ export default function FleetPage() {
           </h1>
           
           <p className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto font-normal">
-            Explore our actual fleet of luxury Travellers, 33-seater business coaches, 27-seater executive buses, and large semi-volvo coaches.
+            Explore our actual fleet of luxury Travellers, 27-seater executive buses, 33-seater business coaches, and large semi-volvo heavy coaches.
           </p>
 
           {/* Quick Category Navigation Pills */}
@@ -59,7 +195,7 @@ export default function FleetPage() {
                   : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
               }`}
             >
-              All Categories
+              All Vehicles ({totalVehiclesCount})
             </button>
             {fleetCategories.map((cat) => (
               <button
@@ -71,7 +207,7 @@ export default function FleetPage() {
                     : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
                 }`}
               >
-                {cat.name}
+                {cat.name} ({cat.vehicles.length})
               </button>
             ))}
           </div>
@@ -101,8 +237,8 @@ export default function FleetPage() {
                 }`}
               >
                 <div>
-                  {/* Category Image */}
-                  <div className="relative h-48 w-full overflow-hidden bg-gray-100">
+                  {/* Category Image - Standardized 1200x800 */}
+                  <div className="relative h-48 w-full overflow-hidden bg-gray-900">
                     <img
                       src={cat.image}
                       alt={cat.name}
@@ -138,7 +274,7 @@ export default function FleetPage() {
                     }}
                     className="w-full py-2.5 px-3 rounded-xl bg-gray-900 hover:bg-black text-white text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors"
                   >
-                    <span>View Vehicles</span>
+                    <span>View All {cat.vehicles.length} Vehicles</span>
                     <ChevronRight className="w-3.5 h-3.5" />
                   </button>
 
@@ -179,7 +315,7 @@ export default function FleetPage() {
                     {category.name}
                   </h2>
                   <p className="text-xs sm:text-sm text-gray-600 mt-1">
-                    {category.description}
+                    {category.description} ({category.vehicles.length} distinct vehicles available in fleet)
                   </p>
                 </div>
 
@@ -194,84 +330,15 @@ export default function FleetPage() {
                 </a>
               </div>
 
-              {/* Vehicle Cards Grid */}
+              {/* Vehicle Cards Grid - Strictly Uniform Sizes */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
                 {category.vehicles.map((vehicle) => (
-                  <div
+                  <VehicleCard
                     key={vehicle.id}
-                    className="bg-white rounded-2xl border border-gray-200/90 overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between"
-                  >
-                    <div>
-                      {/* Actual Bus Photograph extracted from WhatsApp Catalogue */}
-                      <div className="relative h-56 w-full overflow-hidden bg-gray-100">
-                        <img
-                          src={vehicle.image}
-                          alt={`${vehicle.name} - ${vehicle.regNo}`}
-                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                          loading="lazy"
-                        />
-                        
-                        {/* Registration Number Badge */}
-                        {vehicle.regNo && (
-                          <div className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-white/95 backdrop-blur-sm border border-gray-200 text-[11px] font-bold tracking-wider text-gray-900 shadow-sm">
-                            {vehicle.regNo}
-                          </div>
-                        )}
-
-                        {/* AC Badge */}
-                        <div className="absolute bottom-3 left-3 px-2.5 py-1 rounded-md bg-black/75 backdrop-blur-sm text-[10px] font-bold text-white flex items-center gap-1">
-                          <Wind className="w-3 h-3 text-[#91BBD9]" />
-                          <span>{vehicle.ac}</span>
-                        </div>
-                      </div>
-
-                      {/* Card Content */}
-                      <div className="p-5">
-                        
-                        <h3 className="text-base font-bold text-gray-900 mb-1">
-                          {vehicle.name}
-                        </h3>
-
-                        {/* Specs Badges */}
-                        <div className="flex flex-wrap items-center gap-2 mb-3 text-[11px]">
-                          <span className="px-2 py-0.5 rounded bg-gray-100 text-gray-700 font-semibold flex items-center gap-1">
-                            <Users className="w-3 h-3 text-[#FF7900]" />
-                            {vehicle.capacity}
-                          </span>
-                          <span className="px-2 py-0.5 rounded bg-orange-50 text-orange-800 font-semibold">
-                            {vehicle.seatingType}
-                          </span>
-                        </div>
-
-                        <p className="text-xs text-gray-600 leading-relaxed">
-                          {vehicle.description}
-                        </p>
-
-                      </div>
-                    </div>
-
-                    {/* Card Footer: Pricing Strict Compliance & WhatsApp Enquiry */}
-                    <div className="p-5 pt-0 space-y-2.5 border-t border-gray-100 mt-2">
-                      
-                      {/* Price Replacement Note */}
-                      <div className="pt-2 text-center text-xs font-semibold text-gray-700 bg-gray-50 py-1.5 px-2 rounded-lg border border-gray-100">
-                        Contact Us for Booking & Availability
-                      </div>
-
-                      {/* Enquire on WhatsApp Button */}
-                      <a
-                        href={createWhatsAppLink(vehicle.name, vehicle.regNo)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-full btn-orange-gradient py-2.5 px-4 rounded-xl text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2"
-                      >
-                        <WhatsAppIcon className="w-3.5 h-3.5" fill="white" />
-                        <span>Enquire on WhatsApp</span>
-                      </a>
-
-                    </div>
-
-                  </div>
+                    vehicle={vehicle}
+                    onOpenLightbox={onOpenLightbox}
+                    createWhatsAppLink={createWhatsAppLink}
+                  />
                 ))}
               </div>
 
@@ -289,7 +356,7 @@ export default function FleetPage() {
             <span>Verified Fleet of Aarya Tourist Service</span>
           </div>
           <p className="text-sm text-gray-700 leading-relaxed mb-5">
-            All buses shown above are our verified fleet with registered commercial permits. Contact our transport team on WhatsApp (+91 75005 91700) for instant tariff quotes, availability, and confirmed allotment for your travel dates.
+            All {totalVehiclesCount} buses shown above are our verified fleet with registered commercial permits. Contact our transport team on WhatsApp (+91 75005 91700) for instant tariff quotes, availability, and confirmed allotment for your travel dates.
           </p>
           <a
             href={getWhatsAppUrl("Hello Aarya Tourist Service, I would like to check bus availability.")}

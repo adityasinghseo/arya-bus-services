@@ -15,33 +15,33 @@ export default function HomePage({ onOpenLightbox }) {
     {
       name: "Luxury Traveller",
       capacity: "17, 20 & 22 Seater",
-      regNo: "UK08PA-7772",
+      regNo: "UK08PA-7771",
       description: "Executive Force Travellers for family tours, corporate offsites, and hill station travel.",
-      image: "/images/fleet/traveller-luxury-white.jpg",
+      image: "/images/fleet/vehicles/traveller-17s-uk08pa-7771/photo-1.jpg",
       tag: "17, 20 & 22 Seater"
     },
     {
       name: "33 Seater Business Class",
       capacity: "33 Seater AC Coach",
-      regNo: "UK08 PA 5553",
+      regNo: "UK08-PA-8881",
       description: "Premium business class coach with executive 2x2 pushback recliners and dual AC.",
-      image: "/images/fleet/coach-33s-yellow.jpg",
+      image: "/images/fleet/vehicles/coach-33s-uk08-pa-8881/photo-1.jpg",
       tag: "Business Class 2x2"
     },
     {
       name: "27 Seater Luxury Bus",
-      capacity: "27 Seater Pushback AC",
+      capacity: "26, 27 & 29 Seater",
       regNo: "UK07PA4509",
       description: "Official Aarya Tourist Bus Service coach with clean white exterior and powerful AC.",
-      image: "/images/fleet/coach-27s-uk08pa-0303-red.jpg",
+      image: "/images/fleet/vehicles/coach-27s-uk07pa4509/photo-2.jpg",
       tag: "Pushback Coach"
     },
     {
       name: "Large Luxury Buses",
-      capacity: "51, 53, 56 & 61 Seater",
+      capacity: "49, 51, 53 & 61 Seater",
       regNo: "AS01 UC -3546",
       description: "High-capacity Semi-Volvo coaches with air suspension for large wedding and pilgrim groups.",
-      image: "/images/fleet/coach-53s-semi-volvo-gold.jpg",
+      image: "/images/fleet/vehicles/coach-53s-as01-uc-3546/photo-2.jpg",
       tag: "Semi Volvo / Deluxe"
     }
   ];

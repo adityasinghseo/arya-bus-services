@@ -12,7 +12,7 @@ export default function GalleryPage({ onOpenLightbox }) {
       title: "Official Aarya Tourist Coach",
       category: "fleet",
       categoryLabel: "Our Fleet",
-      image: "/images/fleet/coach-27s-aarya-official.jpg",
+      image: "/images/fleet/vehicles/coach-27s-uk07pa4509/photo-2.jpg",
       caption: "Official Aarya Tourist Bus Service 27 seater pushback coach (UK07PA4509)."
     },
     {
@@ -20,7 +20,7 @@ export default function GalleryPage({ onOpenLightbox }) {
       title: "Luxury Pushback Coach Interior",
       category: "interior",
       categoryLabel: "Interiors",
-      image: "/images/fleet/coach-27s-interior.jpg",
+      image: "/images/fleet/vehicles/coach-27s-uk07pa4509/photo-3.jpg",
       caption: "Plush 2x2 executive pushback recliners, wide legroom, and ambient lighting."
     },
     {
@@ -28,7 +28,7 @@ export default function GalleryPage({ onOpenLightbox }) {
       title: "33 Seater Business Class Coach",
       category: "fleet",
       categoryLabel: "Our Fleet",
-      image: "/images/fleet/coach-33s-yellow.jpg",
+      image: "/images/fleet/vehicles/coach-33s-uk08pa-5553/photo-2.jpg",
       caption: "Executive 33 seater luxury coach (UK08 PA 5553) with dual air-conditioning."
     },
     {
@@ -36,15 +36,15 @@ export default function GalleryPage({ onOpenLightbox }) {
       title: "BharatBenz Luxury Highway Coach",
       category: "fleet",
       categoryLabel: "Our Fleet",
-      image: "/images/hero-bus-hd.jpg",
-      caption: "Aarya Tourist Service BharatBenz luxury touring coach (UK08PA8881)."
+      image: "/images/fleet/vehicles/coach-33s-uk08-pa-8881/photo-1.jpg",
+      caption: "Aarya Tourist Service BharatBenz luxury touring coach (UK08-PA-8881)."
     },
     {
       id: 5,
-      title: "53 Seater 2*2 Semi Volvo Coach",
+      title: "53 Seater 2x2 Semi Volvo Coach",
       category: "fleet",
       categoryLabel: "Our Fleet",
-      image: "/images/fleet/coach-53s-semi-volvo-gold.jpg",
+      image: "/images/fleet/vehicles/coach-53s-as01-uc-3546/photo-2.jpg",
       caption: "High-capacity Semi Volvo tourist coach (AS01 UC -3546) with air suspension."
     },
     {
@@ -52,23 +52,23 @@ export default function GalleryPage({ onOpenLightbox }) {
       title: "Executive Force Traveller",
       category: "fleet",
       categoryLabel: "Our Fleet",
-      image: "/images/fleet/traveller-luxury-white.jpg",
-      caption: "Clean, air-conditioned 17, 20 & 22 seater Force Traveller (UK08PA-7772)."
+      image: "/images/fleet/vehicles/traveller-17s-uk08pa-7771/photo-1.jpg",
+      caption: "Clean, air-conditioned 17, 20 & 22 seater Force Traveller (UK08PA-7771)."
     },
     {
       id: 7,
       title: "33 Seater Pushback AC Coach",
       category: "fleet",
       categoryLabel: "Our Fleet",
-      image: "/images/fleet/coach-33s-white-premium.jpg",
-      caption: "White business class coach (UK08 PA 8883) for corporate and wedding travel."
+      image: "/images/fleet/vehicles/coach-33s-uk08pa-8883/photo-3.jpg",
+      caption: "White business class coach (UK08PA 8883) for corporate and wedding travel."
     },
     {
       id: 8,
       title: "27 Seater Pushback Coach",
       category: "fleet",
       categoryLabel: "Our Fleet",
-      image: "/images/fleet/coach-27s-uk08pa-0303-red.jpg",
+      image: "/images/fleet/vehicles/coach-27s-uk08-pa-0303/photo-2.jpg",
       caption: "27 seater pushback coach (UK08 PA 0303) for family and hill station trips."
     },
     {
@@ -76,11 +76,27 @@ export default function GalleryPage({ onOpenLightbox }) {
       title: "51 Seater AC Deluxe Coach",
       category: "fleet",
       categoryLabel: "Our Fleet",
-      image: "/images/fleet/coach-51s-aarya-yellow.jpg",
+      image: "/images/fleet/vehicles/coach-51s-uk08pa-5051/photo-2.jpg",
       caption: "Aarya 51 seater AC deluxe coach (UK08PA 5051) for large tour groups."
     },
     {
       id: 10,
+      title: "61 Seater Semi Volvo Heavy Coach",
+      category: "fleet",
+      categoryLabel: "Our Fleet",
+      image: "/images/fleet/vehicles/coach-61s-as01uc-3716/photo-2.jpg",
+      caption: "Flagship 61 seater Semi Volvo coach (AS01UC -3716) with superior highway ride comfort."
+    },
+    {
+      id: 11,
+      title: "49 Seater 2x2 Business Class Coach",
+      category: "fleet",
+      categoryLabel: "Our Fleet",
+      image: "/images/fleet/vehicles/coach-49s-uk08-pa-5551/photo-1.jpg",
+      caption: "Executive 49 seater business coach (UK08 -PA-5551) for corporate delegations and weddings."
+    },
+    {
+      id: 12,
       title: "Haridwar - Har Ki Pauri Ganga Aarti",
       category: "destinations",
       categoryLabel: "Destinations",
@@ -88,7 +104,7 @@ export default function GalleryPage({ onOpenLightbox }) {
       caption: "Sacred gateway to Uttarakhand and evening Ganga Aarti at Har Ki Pauri."
     },
     {
-      id: 11,
+      id: 13,
       title: "Rishikesh - Trayambakeshwar & River Ganga",
       category: "destinations",
       categoryLabel: "Destinations",
@@ -96,7 +112,7 @@ export default function GalleryPage({ onOpenLightbox }) {
       caption: "Himalayan foothills, Ram Jhula, and scenic spiritual destinations."
     },
     {
-      id: 12,
+      id: 14,
       title: "Ayodhya Dham - Shri Ram Janmabhoomi",
       category: "destinations",
       categoryLabel: "Destinations",
@@ -104,7 +120,7 @@ export default function GalleryPage({ onOpenLightbox }) {
       caption: "Divine pilgrimage yatra to Shri Ram Janmabhoomi Mandir and Saryu Ghat."
     },
     {
-      id: 13,
+      id: 15,
       title: "Mussoorie - Queen of the Hills",
       category: "destinations",
       categoryLabel: "Destinations",
@@ -112,7 +128,7 @@ export default function GalleryPage({ onOpenLightbox }) {
       caption: "Breathtaking mountain views and hill station tours in Uttarakhand."
     },
     {
-      id: 14,
+      id: 16,
       title: "Nainital - Naini Lake & Hills",
       category: "destinations",
       categoryLabel: "Destinations",
@@ -120,7 +136,7 @@ export default function GalleryPage({ onOpenLightbox }) {
       caption: "Tranquil lake boating and scenic Kumaon hill station tours."
     },
     {
-      id: 15,
+      id: 17,
       title: "Agra - Taj Mahal Heritage Route",
       category: "destinations",
       categoryLabel: "Destinations",

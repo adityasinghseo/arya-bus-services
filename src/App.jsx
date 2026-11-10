@@ -58,7 +58,7 @@ export default function App() {
             <Route path="/" element={<HomePage onOpenLightbox={handleOpenLightbox} />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/services" element={<ServicesPage />} />
-            <Route path="/fleet" element={<FleetPage />} />
+            <Route path="/fleet" element={<FleetPage onOpenLightbox={handleOpenLightbox} />} />
             <Route path="/tour-travel" element={<TourTravelPage />} />
             <Route
               path="/gallery"

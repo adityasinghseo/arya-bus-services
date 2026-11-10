@@ -7,37 +7,37 @@ export default function Gallery({ onOpenLightbox }) {
     {
       title: "Official Aarya Tourist Coach",
       subtitle: "27 Seater Pushback AC (UK07PA4509)",
-      image: "/images/fleet/coach-27s-aarya-official.jpg",
+      image: "/images/fleet/vehicles/coach-27s-uk07pa4509/photo-2.jpg",
       tag: "Official Coach"
     },
     {
       title: "Luxury Pushback Coach Interior",
       subtitle: "Executive 2x2 Recliners & LED Lighting",
-      image: "/images/fleet/coach-27s-interior.jpg",
+      image: "/images/fleet/vehicles/coach-27s-uk07pa4509/photo-3.jpg",
       tag: "Interior"
     },
     {
       title: "33 Seater Business Class Coach",
-      subtitle: "Lime Yellow Luxury Coach (UK08 PA 5553)",
-      image: "/images/fleet/coach-33s-yellow.jpg",
+      subtitle: "Executive Luxury Coach (UK08 PA 5553)",
+      image: "/images/fleet/vehicles/coach-33s-uk08pa-5553/photo-2.jpg",
       tag: "Business Class"
     },
     {
       title: "53 Seater Semi Volvo Highway Coach",
       subtitle: "Air Suspension Touring Coach (AS01 UC -3546)",
-      image: "/images/fleet/coach-53s-semi-volvo-gold.jpg",
+      image: "/images/fleet/vehicles/coach-53s-as01-uc-3546/photo-2.jpg",
       tag: "Semi Volvo"
     },
     {
       title: "Executive Force Traveller",
-      subtitle: "17, 20 & 22 Seater (UK08PA-7772)",
-      image: "/images/fleet/traveller-luxury-white.jpg",
+      subtitle: "17, 20 & 22 Seater (UK08PA-7771)",
+      image: "/images/fleet/vehicles/traveller-17s-uk08pa-7771/photo-1.jpg",
       tag: "Traveller"
     },
     {
       title: "BharatBenz Luxury Highway Coach",
-      subtitle: "Mountain Expressway Tour (UK08PA8881)",
-      image: "/images/hero-bus-hd.jpg",
+      subtitle: "Mountain Expressway Tour (UK08-PA-8881)",
+      image: "/images/fleet/vehicles/coach-33s-uk08-pa-8881/photo-1.jpg",
       tag: "BharatBenz"
     }
   ];
